@@ -48,3 +48,6 @@ body {
 .border-b-0_5 {
   border-bottom-width: 0.01px;
 }
+html {
+  scroll-behavior: smooth;
+}

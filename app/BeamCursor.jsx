@@ -22,7 +22,7 @@ export default function BeamCursor() {
       ref={cursorRef}
       className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
     >
-      <div className="w-8 h-8 bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 rounded-full animate-pulse blur-sm opacity-80" />
+      <div className="w-5 h-5 bg-gradient-to-br from-green-400 via-green-500 to-green-600 rounded-full animate-pulse blur-sm opacity-90" />
     </div>
   );
 }

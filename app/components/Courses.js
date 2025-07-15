@@ -1,7 +1,7 @@
 const courses = [
   {
-    slug: "quantum-computing",
-    title: "Quantum Computing: Bridging Theory and Practice",
+    slug: "python",
+    title: "Introduction to Python",
     image: "/courses/quantum.jpg",
     rating: 4.8,
     duration: "03 hours",
@@ -20,9 +20,9 @@ const courses = [
     ],
     curriculum: [
       {
-        title: "Introduction to Quantum Computing",
+        title: "Introduction to Python",
         lessons: [
-          "Quantum Mechanics Basics",
+          "What is ",
           "Qubits and Quantum States",
           "Quantum Gates and Circuits"
         ]

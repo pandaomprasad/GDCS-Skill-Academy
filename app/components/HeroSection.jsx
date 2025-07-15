@@ -37,9 +37,6 @@ export default function HeroSection() {
         </div>
         <RightHeroSection/>
       </div>
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex gap-2 mt-8 text-green-300 text-sm">
-        <span className="font-semibold text-white">01</span> <span>02</span> <span>03</span> <span>04</span>
-      </div>
       <ContactModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );

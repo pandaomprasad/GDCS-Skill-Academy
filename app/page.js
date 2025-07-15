@@ -14,16 +14,27 @@ export default function Home() {
     <>
       <AnnouncementBanner />
       <main>
-        <HeroSection />
-        <BeamCursor/>   
+        <section id="home">
+          <HeroSection />
+        </section>
+        <section id="">
+          <MarqueeSection />
+        </section>
+        <section id="about">
+          <AboutSection />
+        </section>
+         <WorkshopSection />
+        <section id="courses">
+          <MostPopularCourses />
+        </section>
+        <TestimonialsSection />
+        <section id="team">
+          <BestTeachers />
+        </section>
+        <BeamCursor />
         {/* other components */}
-        <MarqueeSection />
-        <AboutSection/>
-        <WorkshopSection/>
-        <MostPopularCourses/>
-        <TestimonialsSection/>
-        <BestTeachers/>
-        <CourseDetails/>
+       
+        
       </main>
     </>
   );

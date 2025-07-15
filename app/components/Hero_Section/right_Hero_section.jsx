@@ -18,35 +18,7 @@ export default function RightHeroSection() {
       </div>
 
       {/* Badge below image */}
-      <div className="absolute bottom-[-30px] left-6 flex items-center gap-2 bg-white rounded-lg shadow-md px-4 py-2">
-        <span className="text-sm font-semibold text-gray-800">120+ Tutors</span>
-        <div className="flex -space-x-2">
-          <Image
-            src="/tutor1.jpg"
-            width={32}
-            height={32}
-            className="rounded-full border-2 border-white"
-            alt="Tutor"
-          />
-          <Image
-            src="/tutor2.jpg"
-            width={32}
-            height={32}
-            className="rounded-full border-2 border-white"
-            alt="Tutor"
-          />
-          <Image
-            src="/tutor3.jpg"
-            width={32}
-            height={32}
-            className="rounded-full border-2 border-white"
-            alt="Tutor"
-          />
-          <div className="w-8 h-8 rounded-full bg-yellow-400 text-center text-white font-bold text-sm flex items-center justify-center border-2 border-white">
-            +
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 }

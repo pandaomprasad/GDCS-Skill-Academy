@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+
+    /* custom colors  */
+    --green :#a1f60a;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* body */
+body {
+  /* background: linear-gradient(to bottom right, #0f3d30, #1e5128); */
+  background: white;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+.text-glow {
+  text-shadow: 0 0 6px #4ade80, 0 0 10px #4ade80;
+}
+
+
+
+
+.border-b-0_5 {
+  border-bottom-width: 0.01px;
+}

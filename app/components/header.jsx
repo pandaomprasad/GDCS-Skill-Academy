@@ -12,7 +12,7 @@ export default function Header() {
         </Link>
 
         {/* Nav Center */}
-        <nav className="hidden md:flex gap-8 text-white font-medium">
+        <nav className="hidden md:flex gap-8 text-black font-medium">
           <Link href="/" className="hover:text-green-400 transition">Home</Link>
           <Link href="#about" className="hover:text-green-400 transition">About</Link>
           <Link href="#courses" className="hover:text-green-400 transition">Courses</Link>

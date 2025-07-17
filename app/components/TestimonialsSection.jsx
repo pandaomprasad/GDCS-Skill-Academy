@@ -11,43 +11,58 @@ const StarIcon = () => (
 const testimonials = [
   {
     id: 1,
-    name: 'Sarah Johnson',
-    role: 'Web Development Student',
-    content: 'The courses here have transformed my career path. The practical approach and industry-relevant curriculum helped me land my dream job in web development.',
+    name: 'Aarav Mehta',
+    course: 'Python Programming',
+    image: '/avatars/aarav.jpg',
     rating: 5,
-    image: '/student.jpeg',
-    otherStudents: ['/student.jpeg', '/student.jpeg', '/student.jpeg']
+    content: 'The Python course was incredibly well-structured and beginner-friendly. I loved the hands-on projects which helped me apply what I learned in real scenarios.',
+    otherStudents: ['/avatars/aarav.jpg', '/avatars/rohan.jpg', '/avatars/sneha.jpg']
   },
   {
     id: 2,
-    name: 'Michael Chen',
-    role: 'Data Science Graduate',
-    content: 'Outstanding learning experience! The hands-on projects and expert guidance gave me the confidence to tackle real-world data science challenges.',
+    name: 'Sneha Reddy',
+    course: 'Java Full Stack Development',
+    image: '/avatars/sneha.jpg',
     rating: 5,
-    image: '/student.jpeg',
-    otherStudents: ['/student.jpeg', '/student.jpeg', '/student.jpeg']
+    content: 'This course gave me full exposure to backend and frontend using Java. The real-world assignments really pushed me to think like a developer.',
+    otherStudents: ['/avatars/sneha.jpg', '/avatars/meera.jpg', '/avatars/vikram.jpg']
   },
   {
     id: 3,
-    name: 'Emily Rodriguez',
-    role: 'UI/UX Design Student',
-    content: 'The design courses here are exceptional. The instructors are industry professionals who provide valuable insights and feedback on every project.',
+    name: 'Raj Patel',
+    course: 'React JS',
+    image: '/avatars/raj.jpg',
     rating: 5,
-    image: '/student.jpeg',
-    otherStudents: ['/student.jpeg', '/student.jpeg', '/student.jpeg']
+    content: 'React JS training was detailed and practical. The mentor was really knowledgeable and always encouraged us to explore beyond the syllabus.',
+    otherStudents: ['/avatars/raj.jpg', '/avatars/aarav.jpg', '/avatars/meera.jpg']
+  },
+  {
+    id: 4,
+    name: 'Ishita Verma',
+    course: 'UI/UX Design',
+    image: '/avatars/ishita.jpg',
+    rating: 5,
+    content: 'From Figma to prototyping and usability testing, the UI/UX course was immersive and creative. The projects added great value to my portfolio.',
+    otherStudents: ['/avatars/ishita.jpg', '/avatars/tanya.jpg', '/avatars/rohan.jpg']
+  },
+  {
+    id: 5,
+    name: 'Vikram Singh',
+    course: 'React Native',
+    image: '/avatars/vikram.jpg',
+    rating: 5,
+    content: 'The React Native course helped me build my first cross-platform app. The live coding sessions and code reviews were super helpful.',
+    otherStudents: ['/avatars/vikram.jpg', '/avatars/sneha.jpg', '/avatars/tanya.jpg']
   }
 ];
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState('entering'); // 'entering' or 'exiting'
+  const [direction, setDirection] = useState('entering');
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Start exit animation
       setDirection('exiting');
-      
-      // After exit animation, change content and start enter animation
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
         setDirection('entering');
@@ -58,24 +73,20 @@ export default function TestimonialsSection() {
   }, []);
 
   const getAnimationClass = () => {
-    if (direction === 'entering') {
-      return 'animate-slide-in-right';
-    }
+    if (direction === 'entering') return 'animate-slide-in-right';
     return 'animate-slide-out-left';
   };
 
   return (
-    <section className="w-full py-16 bg-[#064E3B] rounded-lg ">
+    <section className="w-full py-16 bg-[#064E3B] rounded-lg">
       <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-        {/* Section Header */}
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[#4ADE80] text-sm font-medium">• TESTIMONIALS</span>
           </div>
-          <h2 className="text-4xl font-bold text-white">What Our Students Says</h2>
+          <h2 className="text-4xl font-bold text-white">What Our Students Say</h2>
         </div>
 
-        {/* Testimonials Cards */}
         <div className="relative overflow-hidden">
           <style jsx>{`
             @keyframes slideInRight {
@@ -93,32 +104,28 @@ export default function TestimonialsSection() {
               animation: slideOutLeft 0.5s ease-out forwards;
             }
           `}</style>
+
           <div className={`${getAnimationClass()}`}>
             <div className="bg-[#0B6B52]/30 p-8 rounded-2xl relative overflow-hidden">
               <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
                 <div className="flex-1 space-y-4">
-                  {/* Quote Icon */}
                   <div className="text-[#4ADE80] text-6xl mb-4">❝</div>
 
-                  {/* Rating Stars */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                       <StarIcon key={i} />
                     ))}
                   </div>
 
-                  {/* Testimonial Content */}
                   <p className="text-gray-200 text-lg leading-relaxed">
                     {testimonials[currentIndex].content}
                   </p>
 
-                  {/* Author Info */}
                   <div className="mt-6">
                     <h4 className="text-white font-semibold">{testimonials[currentIndex].name}</h4>
-                    <p className="text-gray-400">{testimonials[currentIndex].role}</p>
+                    <p className="text-gray-400">{testimonials[currentIndex].course}</p>
                   </div>
 
-                  {/* Other Students */}
                   <div className="flex -space-x-3 mt-4">
                     {testimonials[currentIndex].otherStudents.map((student, index) => (
                       <img
@@ -131,7 +138,6 @@ export default function TestimonialsSection() {
                   </div>
                 </div>
 
-                {/* Student Image */}
                 <div className="w-64 h-64 rounded-full overflow-hidden flex-shrink-0">
                   <img
                     src={testimonials[currentIndex].image}
@@ -141,7 +147,6 @@ export default function TestimonialsSection() {
                 </div>
               </div>
 
-              {/* Decorative Elements */}
               <div className="absolute top-4 right-4">
                 <svg className="w-6 h-6 text-[#4ADE80]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

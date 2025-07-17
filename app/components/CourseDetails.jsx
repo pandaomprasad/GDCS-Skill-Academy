@@ -1,39 +1,39 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { Clock, Users, BookOpen, Star, CheckCircle, X } from 'lucide-react';
+import { useState } from "react";
+import Image from "next/image";
+import { Clock, Users, BookOpen, Star, CheckCircle, X } from "lucide-react";
 
 export default function CourseDetails({ course }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    gender: '',
-    whatsapp: '',
-    email: '',
-    qualification: '',
-    semester: '',
-    branch: '',
-    university: '',
-    city: '',
-    state: '',
-    pincode: '',
-    referralSource: ''
+    firstName: "",
+    lastName: "",
+    gender: "",
+    whatsapp: "",
+    email: "",
+    qualification: "",
+    semester: "",
+    branch: "",
+    university: "",
+    city: "",
+    state: "",
+    pincode: "",
+    referralSource: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     setIsModalOpen(false);
   };
 
@@ -75,12 +75,21 @@ export default function CourseDetails({ course }) {
                   <p className="font-medium">{course.instructor}</p>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsModalOpen(true)}
-                className="bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition"
-              >
-                Enroll Now - ${course.price}
-              </button>
+             <div className="space-y-2">
+  <button
+    onClick={() => setIsModalOpen(true)}
+    className="bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition"
+  >
+    {course.status?.toLowerCase() === 'online' ? `Enroll Now - $${course.price}` : 'Register'}
+  </button>
+
+  {course.status?.toLowerCase() !== 'online' && (
+    <p className="text-sm text-red-600">
+      * Course is starting online soon. Register now to secure your spot!
+    </p>
+  )}
+</div>
+
             </div>
             <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl">
               <Image
@@ -100,32 +109,40 @@ export default function CourseDetails({ course }) {
             <div className="mb-12">
               <h2 className="text-2xl font-bold mb-6">What you'll learn</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {course.learningOutcomes && course.learningOutcomes.map((outcome, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
-                    <span>{outcome}</span>
-                  </div>
-                ))}
+                {course.learningOutcomes &&
+                  course.learningOutcomes.map((outcome, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
+                      <span>{outcome}</span>
+                    </div>
+                  ))}
               </div>
             </div>
             <div>
               <h2 className="text-2xl font-bold mb-6">Course Curriculum</h2>
               <div className="space-y-4">
-                {course.curriculum && course.curriculum.map((section, index) => (
-                  <div key={index} className="border rounded-lg overflow-hidden">
-                    <div className="bg-gray-50 px-6 py-4">
-                      <h3 className="font-semibold">{section.title}</h3>
+                {course.curriculum &&
+                  course.curriculum.map((section, index) => (
+                    <div
+                      key={index}
+                      className="border rounded-lg overflow-hidden"
+                    >
+                      <div className="bg-gray-50 px-6 py-4">
+                        <h3 className="font-semibold">{section.title}</h3>
+                      </div>
+                      <div className="divide-y">
+                        {section.lessons.map((lesson, lessonIndex) => (
+                          <div
+                            key={lessonIndex}
+                            className="px-6 py-4 flex items-center gap-3"
+                          >
+                            <BookOpen className="w-5 h-5 text-gray-400" />
+                            <span>{lesson}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="divide-y">
-                      {section.lessons.map((lesson, lessonIndex) => (
-                        <div key={lessonIndex} className="px-6 py-4 flex items-center gap-3">
-                          <BookOpen className="w-5 h-5 text-gray-400" />
-                          <span>{lesson}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>
@@ -166,55 +183,161 @@ export default function CourseDetails({ course }) {
             >
               <X className="w-5 h-5" />
             </button>
-            <h2 className="text-2xl font-bold mb-6">Enroll in {course.title}</h2>
+            <h2 className="text-2xl font-bold mb-6">
+              Enroll in {course.title}
+            </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex gap-2">
-                <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-                <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  className="w-full border px-4 py-2 rounded"
+                  required
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  className="w-full border px-4 py-2 rounded"
+                  required
+                />
               </div>
-              <select name="gender" value={formData.gender} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
-              <input type="tel" name="whatsapp" placeholder="WhatsApp Number" value={formData.whatsapp} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-              <select name="qualification" value={formData.qualification} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required>
+              <input
+                type="tel"
+                name="whatsapp"
+                placeholder="WhatsApp Number"
+                value={formData.whatsapp}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <select
+                name="qualification"
+                value={formData.qualification}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              >
                 <option value="">Select Qualification</option>
                 <option value="diploma">Diploma</option>
                 <option value="undergraduate">Undergraduate</option>
                 <option value="postgraduate">Postgraduate</option>
               </select>
-              <select name="semester" value={formData.semester} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required>
+              <select
+                name="semester"
+                value={formData.semester}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              >
                 <option value="">Select Semester</option>
-                {[...Array(8).keys()].map(i => <option key={i+1} value={`Semester ${i+1}`}>{`Semester ${i+1}`}</option>)}
-              </select>
-              <input type="text" name="branch" placeholder="Branch/Field of Study" value={formData.branch} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-              <input type="text" name="university" placeholder="University Name" value={formData.university} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-              <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-              <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-              <input type="text" name="pincode" placeholder="Pincode" value={formData.pincode} onChange={handleInputChange} className="w-full border px-4 py-2 rounded" required />
-              <div className="space-y-2">
-                <p className="font-medium">How did you know about the program?</p>
-                {['Social Media', 'College', 'Friend', 'Other'].map(option => (
-                  <label key={option} className="flex items-center gap-2">
-                    <input type="radio" name="referralSource" value={option} onChange={handleInputChange} checked={formData.referralSource === option} required />
-                    {option}
-                  </label>
+                {[...Array(8).keys()].map((i) => (
+                  <option key={i + 1} value={`Semester ${i + 1}`}>{`Semester ${
+                    i + 1
+                  }`}</option>
                 ))}
+              </select>
+              <input
+                type="text"
+                name="branch"
+                placeholder="Branch/Field of Study"
+                value={formData.branch}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="university"
+                placeholder="University Name"
+                value={formData.university}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="City"
+                value={formData.city}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="state"
+                placeholder="State"
+                value={formData.state}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="pincode"
+                placeholder="Pincode"
+                value={formData.pincode}
+                onChange={handleInputChange}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <div className="space-y-2">
+                <p className="font-medium">
+                  How did you know about the program?
+                </p>
+                {["Social Media", "College", "Friend", "Other"].map(
+                  (option) => (
+                    <label key={option} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="referralSource"
+                        value={option}
+                        onChange={handleInputChange}
+                        checked={formData.referralSource === option}
+                        required
+                      />
+                      {option}
+                    </label>
+                  )
+                )}
               </div>
-              <button type="submit" className="w-full bg-green-600 text-white py-2 rounded font-medium hover:bg-green-700 transition">Submit</button>
+              <button
+                type="submit"
+                className="w-full bg-green-600 text-white py-2 rounded font-medium hover:bg-green-700 transition"
+              >
+                Submit
+              </button>
             </form>
           </div>
         </div>
       )}
-      <section className="pt-24 bg-gradient-to-br from-[#0f3d30] to-[#1e5128] text-white rounded-lg shadow-lg overflow-hidden min-h-[80vh]">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between">
-          {/* Place your details content here, similar to HeroSection layout */}
-        </div>
-        {/* You can add decorative elements here if desired */}
-      </section>
     </div>
   );
 }

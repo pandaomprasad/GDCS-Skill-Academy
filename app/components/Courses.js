@@ -1,3 +1,4 @@
+
 const courses = [
   {
     slug: "python",
@@ -69,7 +70,7 @@ const courses = [
   {
     slug: "ui-ux-design",
     title: "UI/UX Design Mastery: From Research to High-Fidelity Prototypes",
-    image: "/courses/hacking.jpg",
+    image: "/media/UI-UX Design.jpg",
     rating: 4.8,
     duration: "03 hours",
     lessons: 30,
@@ -145,7 +146,7 @@ const courses = [
   {
     slug: "react-js",
     title: "React JS Development: Build Modern Web Apps with React",
-    image: "/courses/reactjs.jpg", // make sure this image exists in /public/courses/
+    image: "/media/React-js.png", // make sure this image exists in /public/courses/
     rating: 4.9,
     duration: "4 hours",
     lessons: 35,
@@ -217,7 +218,7 @@ const courses = [
   {
     slug: "web-design",
     title: "Web Design Essentials: HTML, CSS & JavaScript for Beginners",
-    image: "/courses/web-design.jpg", // make sure this image exists or update the path
+    image: "/media/html-css-js.png", // make sure this image exists or update the path
     rating: 4.7,
     duration: "4 hours",
     lessons: 32,

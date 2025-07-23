@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Clock, Users, BookOpen, Star, CheckCircle, X } from "lucide-react";
+import CurriculumAccordion from "./CurriculumAccordion";
 
 export default function CourseDetails({ course }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -173,6 +174,7 @@ export default function CourseDetails({ course }) {
           </div>
         </div>
       </div>
+      {/* <CurriculumAccordion curriculum={course.curriculum} /> */}
       {/* Enrollment Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
